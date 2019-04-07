@@ -13,17 +13,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //initialize binding object
-        val binding:ActivityMainBinding= DataBindingUtil.setContentView(this,R.layout.activity_main);
-        //accessing layout elements
-        binding.btnAction.text = "Send Email";
-        binding.tvText.text = "Amirahmad Adibi";
-        binding.tvEmail.text = "Email:amirahmadadibi@gmail.com"
-        binding.tvText.setOnClickListener(View.OnClickListener {
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        //accessing layout elements android changing them manually
+        //binding.btnAction.text = "Send Email";
+        //binding.tvText.text = "Amirahmad Adibi";
+        //binding.tvEmail.text = "Email:amirahmadadibi@gmail.com"
+        binding.tvUsername.setOnClickListener(View.OnClickListener {
             Toast.makeText(this,"test",Toast.LENGTH_SHORT).show();
         });
         //** bind data object with our views
         //initialize object with DataBinding
         binding.contact = Contact("Amirahmad Adibi","amirahmadadibi");
         binding.clickHandler = EventHandler(this);
+
     }
 }
