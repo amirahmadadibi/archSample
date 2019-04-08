@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- assign variable to layout as object -->
     <data>
         <variable name="contact"
                   type="net.codeinreal.amirahmadadibi.applications.archsample.model.Contact"/>
         <variable name="clickHandler"
                   type="net.codeinreal.amirahmadadibi.applications.archsample.EventHandler"/>
+        <variable name="imageUrl" type="String"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity">
@@ -18,17 +18,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_action"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:onClick="@{() -> clickHandler.onButtonClick(contact._username)}"/>
+                android:onClick="@{() -> clickHandler.onButtonClick(contact._username)}"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
+                android:layout_marginStart="16dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_name"/>
         <TextView
-                android:layout_width="wrap_content"
+                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_username"
                 android:layout_marginTop="8dp"
@@ -37,7 +32,7 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
-                android:text="@{contact._username}"/>
+                android:text="@{contact._username,default=Username}"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,7 +43,7 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                android:text="@{contact._email}"/>
+                android:text="@{contact._email,default=Email}"/>
 
         <!--@={contact._username} equal to is because it wiil acsept the data-->
         <EditText
@@ -58,13 +53,32 @@
                 android:text="@={contact._username}"
                 android:ems="10"
                 android:id="@+id/et_name"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/btn_action"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+                android:layout_width="74dp"
+                android:layout_height="0dp"
+                app:srcCompat="@mipmap/ic_launcher"
+                android:id="@+id/profileImage"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="@+id/et_name"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_action"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:profileImage="@{imageUrl}"
+                app:layout_constraintVertical_bias="0.0"
+                android:scaleType="fitCenter"/>
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_test"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_email"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

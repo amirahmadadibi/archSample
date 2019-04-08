@@ -1,7 +1,10 @@
 package net.codeinreal.amirahmadadibi.applications.archsample.model
-
+import android.widget.ImageView
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import net.codeinreal.amirahmadadibi.applications.archsample.BR
 
 //import net.codeinreal.amirahmadadibi.applications.archsample.BR
@@ -23,5 +26,16 @@ class Contact( username:String, email:String): BaseObservable() {
     set(value) {
         field = value
         notifyPropertyChanged(BR._email)
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("profileImage")
+        fun loadImage(view: ImageView, imageUrl: String) {
+            Glide.with(view.context)
+                .load(imageUrl)
+                .apply(RequestOptions.circleCropTransform())
+                .into(view);
+        }
     }
 }

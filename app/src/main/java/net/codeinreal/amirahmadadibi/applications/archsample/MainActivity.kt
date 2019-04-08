@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import kotlinx.android.synthetic.main.activity_main.view.*
 import net.codeinreal.amirahmadadibi.applications.archsample.databinding.ActivityMainBinding
 import net.codeinreal.amirahmadadibi.applications.archsample.model.Contact
 
@@ -25,6 +26,6 @@ class MainActivity : AppCompatActivity() {
         //initialize object with DataBinding
         binding.contact = Contact("Amirahmad Adibi","amirahmadadibi");
         binding.clickHandler = EventHandler(this);
-
+        binding.imageUrl = "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80";
     }
 }
