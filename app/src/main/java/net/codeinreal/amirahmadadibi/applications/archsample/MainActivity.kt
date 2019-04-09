@@ -1,20 +1,16 @@
 package net.codeinreal.amirahmadadibi.applications.archsample
 
-
-
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import kotlinx.android.synthetic.main.activity_main.*
 import net.codeinreal.amirahmadadibi.applications.archsample.databinding.ActivityMainBinding
 import net.codeinreal.amirahmadadibi.applications.archsample.model.Contact
-import javax.security.auth.login.LoginException
 
 class MainActivity : AppCompatActivity() {
-    val TAG = MainActivity::class.java.simpleName
     override fun onResume() {
         super.onResume()
         Log.i(TAG,"Owner onResume");
@@ -26,7 +22,11 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG,"Owner onCreate")
         //initialize binding object
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-        //accessing layout elements android changing them manually
+        var data = MainActivityDataGenerator();
+        val randomeNumber = data.getNumber();
+        tv_randome_number.text =  randomeNumber;
+        Log.i(TAG,"Randome Number Set")
+        //****accessing layout elements android changing them manually
         //binding.btnAction.text = "Send Email";
         //binding.tvText.text = "Amirahmad Adibi";
         //binding.tvEmail.text = "Email: amirahmadadibi@gmail.com"
@@ -38,5 +38,8 @@ class MainActivity : AppCompatActivity() {
         binding.contact = Contact("Amirahmad Adibi","amirahmadadibi");
         binding.clickHandler = EventHandler(this);
         binding.imageUrl = "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80";
+    }
+    companion object {
+        val TAG = MainActivity.javaClass.simpleName;
     }
 }
