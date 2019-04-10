@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 import net.codeinreal.amirahmadadibi.applications.archsample.databinding.ActivityMainBinding
 import net.codeinreal.amirahmadadibi.applications.archsample.model.Contact
@@ -23,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         //initialize binding object
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         var data = MainActivityDataGenerator();
-        val randomeNumber = data.getNumber();
-        tv_randome_number.text =  randomeNumber;
+        //val randomeNumber = data.getNumber();
+        //tv_randome_number.text =  randomeNumber;
         Log.i(TAG,"Randome Number Set")
         //****accessing layout elements android changing them manually
         //binding.btnAction.text = "Send Email";
@@ -38,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         binding.contact = Contact("Amirahmad Adibi","amirahmadadibi");
         binding.clickHandler = EventHandler(this);
         binding.imageUrl = "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80";
+
+        //initialize view model for the view(MainActivity)
+        val viewModel = ViewModelProviders.of(this).get(MainActivityDataGenerator::class.java);
+        tv_randome_number.text = viewModel.getNumber();
     }
     companion object {
         val TAG = MainActivity.javaClass.simpleName;

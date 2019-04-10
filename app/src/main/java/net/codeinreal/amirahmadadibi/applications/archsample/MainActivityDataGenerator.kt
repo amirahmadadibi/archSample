@@ -4,11 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.nfc.Tag
 import android.util.Log
+import androidx.lifecycle.ViewModel
 import java.lang.NumberFormatException
 import java.util.*
 import kotlin.reflect.KClass
 
-class MainActivityDataGenerator {
+class MainActivityDataGenerator: ViewModel() {
     private lateinit var myRandomeNumber: String;
 
     fun getNumber():String{
